@@ -8,31 +8,38 @@
  * @format
  */
 
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {useDispatch} from 'react-redux';
-import {GetRepos} from './src/actions/ReposActions';
-import {RootStore} from './Store';
+import {FirstScreen} from './src/screens/FirstScreen';
+import {IssuesScreen} from './src/screens/IssuesScreen';
+// import {Button, StyleSheet, View} from 'react-native';
+// import {useSelector} from 'react-redux';
+// import {useDispatch} from 'react-redux';
+// import {GetRepos} from './src/actions/ReposActions';
+// import {RootStore} from './Store';
 
+const Stack = createNativeStackNavigator();
 const App = () => {
-  const dispatch = useDispatch();
-  const reposState = useSelector((state: RootStore) => state.repos);
-  const handleSubmit = () => {
-    dispatch(GetRepos('rails', 'rails') as any);
-  };
-  console.log('reposState', reposState);
+  // const dispatch = useDispatch();
+  // const reposState = useSelector((state: RootStore) => state.repos);
+  // const handleSubmit = () => {
+  //   dispatch(GetRepos('rails', 'rails') as any);
+  // };
+  // console.log('reposState', reposState);
   return (
-    <View style={styles.container}>
-      <Button title="Click Me" onPress={handleSubmit} />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="FirstScreen"
+        screenOptions={{
+          headerShown: true,
+        }}>
+        <Stack.Screen name="FirstScreen" component={FirstScreen} />
+
+        <Stack.Screen name="IssuesScreen" component={IssuesScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-  },
-});
 
 export default App;
