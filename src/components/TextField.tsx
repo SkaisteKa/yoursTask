@@ -21,35 +21,60 @@ export const TextField: React.FC<TextFieldProps> = ({
   };
 
   return (
-    <View>
-      <Text>{label}</Text>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.labelSection}>
+        <Text style={styles.label}>{label}</Text>
+        <Text style={styles.star}> *</Text>
+      </View>
+      <View style={styles.body}>
         <TextInput
           style={styles.textField}
           placeholder={placeholder}
           onChangeText={text => handleOnChangeText(text)}
         />
       </View>
-      <Text>{validate && empty ? 'This field required' : ''}</Text>
+        <Text style={styles.validationText}>{validate && empty ? 'This field required' : ''}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 50,
-    backgroundColor: '#CBCBCB',
-    justifyContent: 'center',
-    alignItems: 'center',
     margin: 10,
     paddingLeft: 10,
     paddingRight: 10,
   },
-
-  textField: {
-    flex: 1,
-    height: 50,
+  body: {
+    backgroundColor: '#FFFFFF',
+    opacity: 0.12,
+    width: 300,
+    height: 60,
+    borderRadius: 12,
+    justifyContent: 'center',
+  },
+  labelSection: {
+    flexDirection: 'row',
+    lexWrap: 'wrap',
+    paddingBottom: 10,
+  },
+  label: {
+    color: '#e6e7e9',
+    opacity: 0.8,
     fontSize: 20,
-    color: '#000',
+    fontWeight: '500',
+  },
+  star: {
+    color: '#FF0000',
+    fontSize: 20,
+  },
+  textField: {
+    color: '#000000',
+    fontSize: 20,
+    fontWeight: '500',
+    paddingLeft: 22,
+  },
+  validationText: {
+    color: '#FF0000',
+    textAlign: 'right',
   },
 });

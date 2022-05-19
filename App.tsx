@@ -21,7 +21,7 @@ const App = () => {
       <Stack.Navigator
         initialRouteName="FirstScreen"
         screenOptions={{
-          headerShown: true,
+          headerShown: false,
         }}>
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
         <Stack.Screen name="IssuesScreen" component={IssuesScreen} />

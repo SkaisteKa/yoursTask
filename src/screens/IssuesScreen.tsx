@@ -33,24 +33,19 @@ export const IssuesScreen = ({navigation}) => {
     if (pageToMove > 0) {
       setCurrentPage(pageToMove);
     }
-
-    // const requiredPage = currentPage + pagesToMove;
-    // if (requiredPage > 0 && requiredPage < totalPages) {
-    //   setCurrentPage(currentPage + pagesToMove);
-    // }
   };
-  console.log(' currentPage', currentPage);
+
   return (
     <View style={styles.container}>
-      <Text style={{paddingTop: 200, paddingLeft: 50}}>
+      <View style={{paddingTop: 200, paddingLeft: 50}}>
         <IterationButton onButtonPress={() => setIssueState('open')}>
           Open
         </IterationButton>
         <IterationButton onButtonPress={() => setIssueState('closed')}>
           Closed
         </IterationButton>
-        Current Page:{currentPage}
-      </Text>
+        <Text>Current Page:{currentPage}</Text>
+      </View>
       <ScrollView>
         {reposState.repos
           ? reposState.repos.map(item => handleIssueList(item))
@@ -74,7 +69,7 @@ export const IssuesScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 50,
+    padding: 0,
     flex: 1,
     backgroundColor: '#636B92',
   },

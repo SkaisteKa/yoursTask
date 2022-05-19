@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'; //  TouchableOpacity
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from 'react-native'; //  TouchableOpacity
 import {TextField} from '../components/TextField';
 import {RootStore} from '../../Store';
 import {GetRepos} from '../actions/ReposActions';
 import {setOwnerData, setRepoData} from '../actions/InputsActions';
-
 export const FirstScreen = ({navigation}) => {
-  const [owner, setowner] = useState('');
+  const [owner, setOwner] = useState('');
   const [repository, setRepository] = useState('');
   const [validateOwner, setValidateOwner] = useState(false);
   const [validateRepository, setValidateRepository] = useState(false);
-
   const dispatch = useDispatch();
   const reposState = useSelector((state: RootStore) => state.repos);
-  const inputsState = useSelector((state: RootStore) => state.inputs);
 
   useEffect(() => {
     if (!reposState.loading) {
@@ -32,32 +36,38 @@ export const FirstScreen = ({navigation}) => {
     if (owner && repository) {
       dispatch(setOwnerData(owner) as any);
       dispatch(setRepoData(repository) as any);
-      dispatch(GetRepos(owner, repository, 'open') as any);
+      dispatch(GetRepos(owner, repository, 'open', 5) as any);
+      navigation.navigate('IssuesScreen');
     }
   };
   return (
     <View style={styles.container}>
-      <View style={styles.navigation}></View>
-      <View style={styles.body}>
-        <View style={styles.signInView}>
-          <TextField
-            label="Owner"
-            placeholder="Owner name"
-            onChangeText={setowner}
-            validate={validateOwner}
-          />
-
-          <TextField
-            label="Repository"
-            placeholder="Repository name"
-            onChangeText={setRepository}
-            validate={validateRepository}
-          />
+      <ImageBackground
+        style={styles.backgroundImg}
+        source={require('../../assets/gradientbg.png')}>
+        <View style={styles.header}>
+          <Image style={styles.logo} source={require('../../assets/logo.png')} />
         </View>
-        <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-          <Text style={styles.btnText}>Show Issues</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.body}>
+          <View style={styles.signInView}>
+            <TextField
+              label="Owner"
+              placeholder="Owner name"
+              onChangeText={setOwner}
+              validate={validateOwner}
+            />
+            <TextField
+              label="Repository"
+              placeholder="Repository name"
+              onChangeText={setRepository}
+              validate={validateRepository}
+            />
+          </View>
+          <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
+            <Text style={styles.btnText}>Show Issues</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -65,19 +75,24 @@ export const FirstScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#636B92',
+    backgroundColor: '#040C28',
   },
-
-  navigation: {
-    flex: 2,
-    background: 'grey',
+  backgroundImg: {
+    flex: 1,
+    height: 630,
   },
-
+  header: {
+    flex: 3,
+    paddingTop: 48,
+    paddingLeft: 24,
+  },
+  logo: {
+    width: 98,
+    height: 74,
+  },
   body: {
-    flex: 9,
-    background: 'yellow',
+     flex: 9,
   },
-
   signInView: {
     marginTop: 20,
     marginLeft: 20,
@@ -85,7 +100,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
-
   button: {
     width: 200,
     marginTop: 20,
@@ -94,7 +108,6 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 8,
   },
-
   btnText: {
     color: 'white',
     fontSize: 20,
