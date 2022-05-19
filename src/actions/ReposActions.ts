@@ -5,21 +5,26 @@ import {
   REPOS_LOADING,
   REPOS_FAIL,
   REPOS_SUCCESS,
-} from './ReposActionTypes';
+} from './ActionTypes';
 
 export const GetRepos =
-  (owner: string, repository: string) =>
+  (
+    owner: string,
+    repository: string,
+    state: string,
+    perPage: number = 5,
+    page: number = 1,
+  ) =>
   async (dispatch: Dispatch<ReposDispatchTypes>) => {
     try {
       dispatch({
         type: REPOS_LOADING,
       });
       const res = await axios.get(
-        `https://api.github.com/repos/${owner}/${repository}/issues?state=all`,
+        `https://api.github.com/repos/${owner}/${repository}/issues?state=${state}&per_page=${perPage}&page=${page}`,
       );
       dispatch({
         type: REPOS_SUCCESS,
-
         payload: res.data,
       });
     } catch (e) {

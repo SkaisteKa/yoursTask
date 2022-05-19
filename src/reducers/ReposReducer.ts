@@ -4,15 +4,16 @@ import {
   REPOS_LOADING,
   REPOS_SUCCESS,
   ReposData,
-} from '../actions/ReposActionTypes';
+} from '../actions/ActionTypes';
 
 interface IDefaultState {
-  loading: boolean;
+  loading?: boolean;
   repos?: ReposData;
 }
 
 const defaultState: IDefaultState = {
   loading: false,
+  //repos: [], //?
 };
 
 const reposReducer = (
@@ -21,7 +22,7 @@ const reposReducer = (
 ): IDefaultState => {
   switch (action.type) {
     case REPOS_LOADING:
-      return {loading: true}; // why not? {...state, loading: true}
+      return {loading: true};
     case REPOS_FAIL:
       return {loading: false};
     case REPOS_SUCCESS:

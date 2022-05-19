@@ -4,22 +4,21 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'; //  Touch
 import {TextField} from '../components/TextField';
 import {RootStore} from '../../Store';
 import {GetRepos} from '../actions/ReposActions';
+import {setOwnerData, setRepoData} from '../actions/InputsActions';
 
 export const FirstScreen = ({navigation}) => {
-  const [owner, setOwner] = useState('');
+  const [owner, setowner] = useState('');
   const [repository, setRepository] = useState('');
   const [validateOwner, setValidateOwner] = useState(false);
   const [validateRepository, setValidateRepository] = useState(false);
 
   const dispatch = useDispatch();
   const reposState = useSelector((state: RootStore) => state.repos);
+  const inputsState = useSelector((state: RootStore) => state.inputs);
 
   useEffect(() => {
-    console.log('Repos state in UE', reposState);
-
     if (!reposState.loading) {
       if (reposState.repos) {
-        console.log('ready for next steps');
         navigation.navigate('IssuesScreen');
       } else {
         console.log('no such user or repo');
@@ -31,10 +30,11 @@ export const FirstScreen = ({navigation}) => {
     setValidateOwner(!owner);
     setValidateRepository(!repository);
     if (owner && repository) {
-      dispatch(GetRepos(owner, repository) as any);
+      dispatch(setOwnerData(owner) as any);
+      dispatch(setRepoData(repository) as any);
+      dispatch(GetRepos(owner, repository, 'open') as any);
     }
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.navigation}></View>
@@ -43,7 +43,7 @@ export const FirstScreen = ({navigation}) => {
           <TextField
             label="Owner"
             placeholder="Owner name"
-            onChangeText={setOwner}
+            onChangeText={setowner}
             validate={validateOwner}
           />
 
