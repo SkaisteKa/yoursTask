@@ -2,7 +2,7 @@
 
 ## Description
 
-This is small Mobile Application where user could get a list of issues for a given Github repository by its Owner and Name. List items also include information of every issue. It is possible easily to move between list items and to use filter that depends on state of issues.
+This is a small Mobile Application where user could get a list of issues for a given Github repository by its Owner and Name. List items also include information of every issue. It is possible easily to move between list items and to use filter that depends on state of issues.
 
 
 ## Main technologies used
