@@ -6,8 +6,6 @@ import {
 
 interface IDefaultState {
   inputs: {};
-  // owner: string;
-  // repository: string;
 }
 
 const defaultState: IDefaultState = {

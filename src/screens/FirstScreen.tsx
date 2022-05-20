@@ -12,6 +12,7 @@ import {TextField} from '../components/TextField';
 import {RootStore} from '../../Store';
 import {GetRepos} from '../actions/ReposActions';
 import {setOwnerData, setRepoData} from '../actions/InputsActions';
+import {issueTotal} from '../actions/DataActions';
 export const FirstScreen = ({navigation}) => {
   const [owner, setOwner] = useState('');
   const [repository, setRepository] = useState('');
@@ -23,6 +24,7 @@ export const FirstScreen = ({navigation}) => {
   useEffect(() => {
     if (!reposState.loading) {
       if (reposState.repos) {
+        dispatch(issueTotal(reposState.repos[0].number));
         navigation.navigate('IssuesScreen');
       } else {
         console.log('no such user or repo');
@@ -36,7 +38,7 @@ export const FirstScreen = ({navigation}) => {
     if (owner && repository) {
       dispatch(setOwnerData(owner) as any);
       dispatch(setRepoData(repository) as any);
-      dispatch(GetRepos(owner, repository, 'open', 5) as any);
+      dispatch(GetRepos(owner, repository, 'open', 20) as any);
       navigation.navigate('IssuesScreen');
     }
   };
@@ -46,7 +48,10 @@ export const FirstScreen = ({navigation}) => {
         style={styles.backgroundImg}
         source={require('../../assets/gradientbg.png')}>
         <View style={styles.header}>
-          <Image style={styles.logo} source={require('../../assets/logo.png')} />
+          <Image
+            style={styles.logo}
+            source={require('../../assets/logo.png')}
+          />
         </View>
         <View style={styles.body}>
           <View style={styles.signInView}>
@@ -91,7 +96,7 @@ const styles = StyleSheet.create({
     height: 74,
   },
   body: {
-     flex: 9,
+    flex: 9,
   },
   signInView: {
     marginTop: 20,

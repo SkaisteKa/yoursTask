@@ -9,11 +9,17 @@ const IterationButton = props => {
   return (
     <TouchableOpacity style={styles.button} onPress={props.onButtonPress}>
       {props.icon === 'left' && (
-        <Icon name="angle-left" size={30} color="#ffffff" />
+        <Icon name="angle-left" size={20} color="#e6e7e980" />
       )}
-      <Text style={styles.btnText}>{props.children}</Text>
+      <Text
+        style={[
+          styles.btnText,
+          props.icon === 'left' ? styles.btnTLeft : styles.btnRight,
+        ]}>
+        {props.children}
+      </Text>
       {props.icon === 'right' && (
-        <Icon name="angle-right" size={30} color="#ffffff" />
+        <Icon name="angle-right" size={20} color="#3267F0" />
       )}
     </TouchableOpacity>
   );
@@ -28,14 +34,21 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-
+  btnTLeft: {
+    color: '#e6e7e980',
+  },
+  btnRight: {
+    color: '#3267F0',
+  },
   btnText: {
-    color: '#fff',
+    color: '#e6e7e980',
     fontSize: 20,
     justifyContent: 'center',
     textAlign: 'center',
+    paddingLeft: 8,
+    paddingRight: 8,
   },
 });

@@ -7,13 +7,12 @@ import {
 } from '../actions/ActionTypes';
 
 interface IDefaultState {
-  loading?: boolean;
+  loading: boolean;
   repos?: ReposData;
 }
 
 const defaultState: IDefaultState = {
   loading: false,
-  //repos: [], //?
 };
 
 const reposReducer = (

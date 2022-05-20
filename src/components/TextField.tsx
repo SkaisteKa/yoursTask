@@ -26,14 +26,21 @@ export const TextField: React.FC<TextFieldProps> = ({
         <Text style={styles.label}>{label}</Text>
         <Text style={styles.star}> *</Text>
       </View>
-      <View style={styles.body}>
+      <View
+        style={[
+          styles.body,
+          validate && empty ? styles.validationBorder : null,
+        ]}>
         <TextInput
           style={styles.textField}
           placeholder={placeholder}
+          placeholderTextColor="#ffffff66"
           onChangeText={text => handleOnChangeText(text)}
         />
       </View>
-        <Text style={styles.validationText}>{validate && empty ? 'This field required' : ''}</Text>
+      <Text style={styles.validationText}>
+        {validate && empty ? 'This field required' : ''}
+      </Text>
     </View>
   );
 };
@@ -45,8 +52,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   body: {
-    backgroundColor: '#FFFFFF',
-    opacity: 0.12,
+    backgroundColor: 'rgba(255, 255, 255, 0.12)',
     width: 300,
     height: 60,
     borderRadius: 12,
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   textField: {
-    color: '#000000',
+    color: '#E6E7E9',
     fontSize: 20,
     fontWeight: '500',
     paddingLeft: 22,
@@ -76,5 +82,9 @@ const styles = StyleSheet.create({
   validationText: {
     color: '#FF0000',
     textAlign: 'right',
+  },
+  validationBorder: {
+    borderWidth: 1,
+    borderColor: 'red',
   },
 });

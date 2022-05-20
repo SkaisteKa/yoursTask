@@ -5,6 +5,8 @@ export const REPOS_SUCCESS = 'REPOS_SUCCESS';
 export const SET_OWNER_DATA = 'SET_OWNER_DATA';
 export const SET_REPO_DATA = 'SET_REPO_DATA';
 
+export const ISSUES_TOTAL = 'ISSUES_TOTAL';
+
 export interface ReposData extends Array<any> {}
 
 export interface ReposLoading {
@@ -35,3 +37,10 @@ export interface SetRepoData {
 }
 
 export type InputsDispatchTypes = SetOwnerData | SetRepoData;
+
+export interface IssuesTotal {
+  type: typeof ISSUES_TOTAL;
+  payload: number;
+}
+
+export type IssuesTotalTypes = IssuesTotal;
