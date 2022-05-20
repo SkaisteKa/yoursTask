@@ -7,14 +7,13 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
-} from 'react-native'; //  TouchableOpacity
+} from 'react-native';
 import {TextField} from '../components/TextField';
 import {RootStore} from '../../Store';
 import {GetRepos} from '../actions/ReposActions';
 import {setOwnerData, setRepoData} from '../actions/InputsActions';
 import {issueTotal} from '../actions/DataActions';
 
-//export const FirstScreen = ({
 interface FirstScreenProps {
   navigation: any;
 }
