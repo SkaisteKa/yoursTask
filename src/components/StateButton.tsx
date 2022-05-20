@@ -1,7 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+interface StateButtonProps {
+  icon?: string;
+  onButtonPress(): any;
+  children?: string;
+  number?: number;
+}
 
-const StateButton = props => {
+export const StateButton: React.FC<StateButtonProps> = props => {
   const showIcon = (iconName?: string) => {
     if (iconName === 'open') {
       return (
@@ -48,7 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     justifyContent: 'center',
     textAlign: 'center',
-    //opacity: 1,
   },
   icon: {
     width: 18,

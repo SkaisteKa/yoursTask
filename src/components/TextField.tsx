@@ -4,7 +4,7 @@ import {View, TextInput, StyleSheet, Text} from 'react-native';
 interface TextFieldProps {
   label: string;
   placeholder: string;
-  onChangeText: Function; //is this what we use for f?
+  onChangeText: Function;
   validate: boolean;
 }
 

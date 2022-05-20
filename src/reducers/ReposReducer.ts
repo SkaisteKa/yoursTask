@@ -10,7 +10,6 @@ interface IDefaultState {
   loading: boolean;
   repos?: ReposData;
 }
-
 const defaultState: IDefaultState = {
   loading: false,
 };

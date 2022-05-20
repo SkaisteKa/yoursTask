@@ -8,7 +8,9 @@ import {GetRepos} from '../actions/ReposActions';
 import StateButton from '../components/StateButton';
 import IssueTab from '../components/IssueTab';
 
-export const IssuesScreen = ({navigation}) => {
+interface IssuesScreenProps {}
+
+export const IssuesScreen: React.FC<IssuesScreenProps> = () => {
   const dispatch = useDispatch();
   const reposState = useSelector((state: RootStore) => state.repos);
   const inputsState = useSelector((state: RootStore) => state.inputs);
@@ -58,7 +60,7 @@ export const IssuesScreen = ({navigation}) => {
         <ScrollView>
           {reposState.repos
             ? reposState.repos.map(item => (
-                <IssueTab item={item} icon={issueState} />
+                <IssueTab item={item} icon={issueState} key={item.number} />
               ))
             : null}
         </ScrollView>

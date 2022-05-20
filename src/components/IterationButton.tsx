@@ -1,11 +1,16 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-//import Icon from 'react-native-vector-icons/MaterialIcons'
 
 Icon.loadFont();
 
-const IterationButton = props => {
+interface IterationButtonProps {
+  icon?: string;
+  onButtonPress(): any;
+  children?: string;
+}
+
+export const IterationButton: React.FC<IterationButtonProps> = props => {
   return (
     <TouchableOpacity style={styles.button} onPress={props.onButtonPress}>
       {props.icon === 'left' && (

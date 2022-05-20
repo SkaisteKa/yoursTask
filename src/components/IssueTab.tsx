@@ -1,8 +1,21 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
-const IssueTab = ({item, icon}) => {
+interface ItemData {
+  title: string;
+  number: number;
+  comments: number;
+  user: any;
+  created_at: string;
+}
 
+interface ItemData extends Array<ItemData> {}
+interface IssueTabProps {
+  item: ItemData;
+  icon: string;
+}
+
+export const IssueTab: React.FC<IssueTabProps> = ({item, icon}) => {
   const showIcon = (iconName?: string) => {
     if (iconName === 'open') {
       return <Image source={require('../../assets/openIcon.png')} />;
@@ -13,7 +26,7 @@ const IssueTab = ({item, icon}) => {
     return null;
   };
   return (
-    <View style={styles.container} key={item.number}>
+    <View style={styles.container}>
       <View style={styles.issueDetails}>
         <View style={styles.icon}>{showIcon(icon)}</View>
         <View style={styles.textWrapper}>

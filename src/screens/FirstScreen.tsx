@@ -13,7 +13,13 @@ import {RootStore} from '../../Store';
 import {GetRepos} from '../actions/ReposActions';
 import {setOwnerData, setRepoData} from '../actions/InputsActions';
 import {issueTotal} from '../actions/DataActions';
-export const FirstScreen = ({navigation}) => {
+
+//export const FirstScreen = ({
+interface FirstScreenProps {
+  navigation: any;
+}
+
+export const FirstScreen: React.FC<FirstScreenProps> = ({navigation}) => {
   const [owner, setOwner] = useState('');
   const [repository, setRepository] = useState('');
   const [validateOwner, setValidateOwner] = useState(false);
@@ -27,7 +33,7 @@ export const FirstScreen = ({navigation}) => {
         dispatch(issueTotal(reposState.repos[0].number));
         navigation.navigate('IssuesScreen');
       } else {
-        console.log('no such user or repo');
+        //console.log('no such user or repo');
       }
     }
   }, [reposState]);
